@@ -53,8 +53,12 @@ dependencies {
                 "org.junit.vintage:junit-vintage-engine:${junitVersion}",
                 "org.assertj:assertj-core:${assertJVersion}",
                 "org.projectlombok:lombok:${lombokVersion}",
-                "ch.qos.logback:logback-classic:${logbackVersion}",
-        "net.serenity-bdd:serenity-screenplay-rest:${serenityCoreVersion}"
+                "ch.qos.logback:logback-classic:${logbackVersion}"
+
+
+
+
+        implementation("net.serenity-bdd:serenity-screenplay-rest:${serenityCoreVersion}")
 
 
 

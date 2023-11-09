@@ -8,47 +8,46 @@ import io.cucumber.java.en.When;
 import com.github.javafaker.Faker;
 import net.serenitybdd.core.steps.UIInteractions;
 import net.serenitybdd.screenplay.Actor;
-import starter.tasks.RegisterUser;
+import net.serenitybdd.screenplay.Performable;
+import questions.StatusCode;
+import tasks.CrearDataRegister;
+import tasks.RegisterUser;
 
 import java.util.Collections;
-import static net.serenitybdd.rest.SerenityRest.then;
+import java.util.Set;
+
+import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
+import static org.hamcrest.CoreMatchers.equalTo;
 
 public class RegisterStep extends UIInteractions {
     private RegisterRecord registerRecord;
+
     Faker faker = new Faker();
     String user = faker.name().username();
-
-    String password = faker.internet().password();
 
 
     @Given("{actor} registra un usuario no existente")
     public void tobyRegistraUnUsuarioNoExistente(Actor actor) {
 
-        registerRecord = new RegisterRecord(user, password, Collections.singleton("user"));
+        registerRecord =new RegisterRecord(faker.name().username(),faker.internet().password(), Set.of("user"));
 
+        //actor.attemptsTo(CrearDataRegister.create());
     }
 
 
     @When("{actor} invoca el servicio de registro")
     public void invocoElServicioDeRegistro(Actor actor) {
-
-
         actor.attemptsTo(RegisterUser.withData(registerRecord));
-
-    /* given().baseUri("http://localhost:8090/api")
-             .basePath("/usuarios")
-             .body(registerRecord, ObjectMapperType.GSON)
-             .contentType(ContentType.JSON)
-             .when()
-             .accept(ContentType.JSON)
-             .post();*/
     }
 
 
     @Then("{actor} obtengo un status code {int}")
-    public void obtengoUnStatusCode(Actor actor,int expectedStatusCode) {
-         actor.then().statusCode(expectedStatusCode);
+    public void obtengoUnStatusCode(Actor actor, Integer expectedStatusCode) {
+        ;
 
+        actor.should(
+                seeThat("el codigo de respuesta", StatusCode.code(), equalTo(expectedStatusCode))
+        );
     }
 
 
