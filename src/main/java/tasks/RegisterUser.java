@@ -8,6 +8,7 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.rest.abilities.CallAnApi;
 import net.serenitybdd.screenplay.rest.interactions.Post;
 
+import static util.Constants.BASE_URL_API;
 
 
 public class RegisterUser implements Task {
@@ -27,7 +28,7 @@ public class RegisterUser implements Task {
 
 
     public <T extends Actor> void performAs(T actor) {
-        actor.whoCan(CallAnApi.at("http://localhost:8090/api"));
+        actor.whoCan(CallAnApi.at(BASE_URL_API));
 
         actor.attemptsTo(
                 Post.to("/usuarios")

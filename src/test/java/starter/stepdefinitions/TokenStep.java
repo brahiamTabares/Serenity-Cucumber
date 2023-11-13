@@ -38,4 +38,9 @@ public class TokenStep {
     public void elAdministradorIntentaAutenticarseConDatosIncompletos() {
         autenticacionRecord=new AutenticationRecord("admin"," ");
     }
+
+    @Given("El administrador intenta autenticarse con datos incorrectos")
+    public void elAdministradorIntentaAutenticarseConDatosIncorrectos() {
+        autenticacionRecord=new AutenticationRecord("admin","admin1");
+    }
 }
