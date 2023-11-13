@@ -28,8 +28,6 @@ public class TokenGenerationValidation implements Question<Boolean> {
                                 .body(matchesJsonSchemaInClasspath("schemas/"+schemaFileName+".json"))
                 )
         );
-        System.out.println("nombre archivo: "+ schemaFileName);
-
         // Additional check to log the response if it does not match the schema
         then().log().ifValidationFails();
 

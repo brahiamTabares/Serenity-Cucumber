@@ -28,11 +28,9 @@ public class TokenStep {
     }
     @Then("{actor} obtiene una respues que contiene el token")
     public void el_administrador_obtiene_una_respues_que_contiene_el_token(Actor actor) {
-       // actor.should( seeThat(ContentToken.get(), Matchers.not( Matchers.emptyString() )) );
-
        actor.should(
                 //seeThat(ContentToken.get(), Matchers.not( Matchers.emptyString() )));
-                seeThat(TokenGenerationValidation.theTokenSchemaIs("tokenSchema")));
+                seeThat(TokenGenerationValidation.theTokenSchemaIs("formatToken")));
 
     }
 
