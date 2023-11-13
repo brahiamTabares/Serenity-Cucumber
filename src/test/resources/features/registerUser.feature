@@ -4,6 +4,7 @@ Feature: Permitir registar un usuario en el sistema
     Given brahiam registra un usuario no existente
     When brahiam invoca el servicio de registro
     Then brahiam obtengo un status code 201
+    And  brahiam la respuesta contiene los datos del usuario
 
   Scenario: yo quiero registrarme en el sistema con datos incompletos
     Given voy a registarme como un usuario con datos faltantes
