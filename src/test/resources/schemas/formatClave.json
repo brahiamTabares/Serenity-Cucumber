@@ -1,0 +1,64 @@
+{"Clave": {
+"exclusiveMaximum": false,
+"exclusiveMinimum": false,
+"minLength": 0,
+"uniqueItems": false,
+"maxProperties": 0,
+"minProperties": 0,
+"type": "object",
+"properties": {
+"clave": {
+"exclusiveMaximum": false,
+"exclusiveMinimum": false,
+"minLength": 0,
+"uniqueItems": false,
+"maxProperties": 0,
+"minProperties": 0,
+"type": "string",
+"description": "Nueva clave a ser asignada al usuario",
+"nullable": false,
+"readOnly": false,
+"writeOnly": false,
+"deprecated": false
+},
+"nueva_clave": {
+"exclusiveMaximum": false,
+"exclusiveMinimum": false,
+"minLength": 0,
+"uniqueItems": false,
+"maxProperties": 0,
+"minProperties": 0,
+"type": "string",
+"description": "Nueva clave a ser asignada al usuario",
+"nullable": false,
+"readOnly": false,
+"writeOnly": false,
+"deprecated": false
+},
+"verificacion_clave": {
+"exclusiveMaximum": false,
+"exclusiveMinimum": false,
+"minLength": 0,
+"uniqueItems": false,
+"maxProperties": 0,
+"minProperties": 0,
+"type": "string",
+"description": "Nueva clave repetida para verificación",
+"nullable": false,
+"readOnly": false,
+"writeOnly": false,
+"deprecated": false
+}
+},
+"nullable": false,
+"readOnly": false,
+"writeOnly": false,
+"example": "{\"clave\":\"12345\",\"nueva_clave\":\"ABC123\",\"verificacion_clave\":\"ABC123\"}",
+"deprecated": false
+},
+  "required": [
+    "verificacion_clave",
+    "nueva_clave",
+    "clave"
+  ]
+}

@@ -10,6 +10,7 @@ import net.serenitybdd.screenplay.rest.abilities.CallAnApi;
 import net.serenitybdd.screenplay.rest.interactions.Post;
 
 import static util.Constants.BASE_URL_API;
+import static util.Constants.getBaseUrlApi;
 
 public class TokenUser implements Task {
     private final AutenticationRecord autenticationRecord;
@@ -27,7 +28,7 @@ public class TokenUser implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
-       actor.whoCan(CallAnApi.at(BASE_URL_API));
+       actor.whoCan(CallAnApi.at(getBaseUrlApi()));
 
         actor.attemptsTo(
                 Post.to("/tokens")

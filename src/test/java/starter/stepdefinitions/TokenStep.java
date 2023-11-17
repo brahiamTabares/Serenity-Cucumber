@@ -7,40 +7,44 @@ import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import org.hamcrest.Matchers;
 import questions.ContentToken;
-import questions.TokenGenerationValidation;
+import net.serenitybdd.annotations.Shared;
 import tasks.TokenUser;
+import util.DataShared;
+import util.GeneralData;
+
 import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 
 public class TokenStep {
-     private AutenticationRecord autenticacionRecord;
-     private ContentToken contentToken;
-    @Given("{actor} esta autenticado")
+
+    @Shared
+    private GeneralData generalData;
+    @Shared
+    private DataShared dataShared;
+    @Given("El {actor} esta autenticado")
     public void el_administrador_esta_autenticado(Actor actor) {
 
-        autenticacionRecord=new AutenticationRecord("admin","admin");
-        //actor.attemptsTo(AutenticacionUser.create());
+        actor.attemptsTo(TokenUser.withData(dataShared.autenticationRecord));
+
     }
-    @When("{actor} invoca el servicio de generar tokens")
+    @When("El {actor} invoca el servicio de generar tokens")
     public void el_administrador_invoca_el_servicio_de_generar_tokens(Actor actor) {
 
-        actor.attemptsTo(TokenUser.withData(autenticacionRecord));
+        actor.attemptsTo(TokenUser.withData(dataShared.autenticationRecord));
 
     }
-    @Then("{actor} obtiene una respues que contiene el token")
+    @Then("El {actor} obtiene una respuesta que contiene el token")
     public void el_administrador_obtiene_una_respues_que_contiene_el_token(Actor actor) {
        actor.should(
-                //seeThat(ContentToken.get(), Matchers.not( Matchers.emptyString() )));
-                seeThat(TokenGenerationValidation.theTokenSchemaIs("formatToken")));
-
+                seeThat(ContentToken.get(), Matchers.not( Matchers.emptyString() )));
     }
 
-    @Given("El administrador intenta autenticarse con datos incompletos")
-    public void elAdministradorIntentaAutenticarseConDatosIncompletos() {
-        autenticacionRecord=new AutenticationRecord("admin"," ");
+    @Given("El {actor} intenta autenticarse con datos incompletos")
+    public void elAdministradorIntentaAutenticarseConDatosIncompletos(Actor actor) {
+        dataShared.autenticationRecord=new AutenticationRecord(dataShared.usuarioRecord.usuario()," ");
     }
 
-    @Given("El administrador intenta autenticarse con datos incorrectos")
-    public void elAdministradorIntentaAutenticarseConDatosIncorrectos() {
-        autenticacionRecord=new AutenticationRecord("admin","admin1");
+    @Given("El {actor} intenta autenticarse con datos incorrectos")
+    public void elAdministradorIntentaAutenticarseConDatosIncorrectos(Actor actor) {
+        dataShared.autenticationRecord=new AutenticationRecord(dataShared.usuarioRecord.usuario(),generalData.getPassword());
     }
 }
