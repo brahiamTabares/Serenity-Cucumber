@@ -30,4 +30,13 @@ private ClaveUserRecord claveUsuario;
     }
 
 
+    @When("El {actor} solicita actualizacion de una clave de usuario con datos incompletos")
+    public void elAdminSolicitaActualizacionDeUnaClaveDeUsuarioConDatosIncompletos(Actor actor) {
+
+        String nuevaClave= "";
+        ClaveUserRecord claveUsuarioRecord = new ClaveUserRecord(dataShared.usuarioRecord.clave(),nuevaClave,nuevaClave);
+        System.out.println(dataShared.usuarioRecord.usuario());
+        actor.attemptsTo(PatchUser.withData(claveUsuarioRecord,dataShared.usuarioRecord.usuario()));
+
+    }
 }
