@@ -14,18 +14,15 @@ private DataShared dataShared;
 @Shared
 private GeneralData generalData;
 
-private ClaveUserRecord claveUsuario;
+private ClaveUserRecord claveUsuarioRecord;
 
 
     @When("El {actor} solicita actualizacion de una clave de usuario")
     public void el_admin_solicita_actualizacion_de_una_clave_de_usuario(Actor actor) {
 
         String nuevaClave= generalData.getPassword();
-        ClaveUserRecord claveUsuarioRecord = new ClaveUserRecord(dataShared.usuarioRecord.clave(),nuevaClave,nuevaClave);
-        System.out.println(dataShared.usuarioRecord.usuario());
+        claveUsuarioRecord = new ClaveUserRecord(dataShared.usuarioRecord.clave(),nuevaClave,nuevaClave);
         actor.attemptsTo(PatchUser.withData(claveUsuarioRecord,dataShared.usuarioRecord.usuario()));
-
-       // dataShared.usuarioRecord = new UsuarioRecord(dataShared.usuarioRecord.usuario(), claveUsuarioRecord.nuevaClave(), dataShared.usuarioRecord.roles());
 
     }
 
@@ -35,7 +32,6 @@ private ClaveUserRecord claveUsuario;
 
         String nuevaClave= "";
         ClaveUserRecord claveUsuarioRecord = new ClaveUserRecord(dataShared.usuarioRecord.clave(),nuevaClave,nuevaClave);
-        System.out.println(dataShared.usuarioRecord.usuario());
         actor.attemptsTo(PatchUser.withData(claveUsuarioRecord,dataShared.usuarioRecord.usuario()));
 
     }
